@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${KumbhSans.className}  antialiased`}>{children}</body>
+      <body className={` ${KumbhSans.className}`}>{children}</body>
     </html>
   );
 }

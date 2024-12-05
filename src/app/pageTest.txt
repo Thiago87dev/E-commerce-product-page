@@ -1,0 +1,62 @@
+"use client";
+import Image from "next/image";
+import { useState } from "react";
+
+const imagesSrcThumb = [
+  "/images/image-product-1-thumbnail.jpg",
+  "/images/image-product-2-thumbnail.jpg",
+  "/images/image-product-3-thumbnail.jpg",
+  "/images/image-product-4-thumbnail.jpg",
+];
+
+export default function Home() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(
+    imagesSrcThumb[0]
+  );
+
+  const handleImageClick = (imageSrc: string) => {
+    setSelectedImage(imageSrc);
+  };
+
+  return (
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 ">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <div className="flex gap-10">
+          {imagesSrcThumb.map((image) => (
+            <div key={image}>
+              <div
+                className={`border-2 ${
+                  selectedImage === image
+                    ? "border-red-500"
+                    : "border-transparent"
+                }`}
+              >
+                <Image
+                  className={`hover:opacity-50 ${
+                    selectedImage === image ? "opacity-50" : "opacity-100"
+                  }`}
+                  onClick={() => handleImageClick(image)}
+                  src={image}
+                  alt="image"
+                  width={180}
+                  height={38}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center items-center p-10 bg-gray-100 rounded-full hover:text-yellow-400 active:text-red-500 cursor-pointer">
+          <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m2 1 8 8-8 8"
+              className="stroke-current "
+              stroke-width="3"
+              fill="none"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </div>
+      </main>
+    </div>
+  );
+}
