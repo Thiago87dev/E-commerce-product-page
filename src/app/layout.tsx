@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+import Navbar from "@/components/Navbar";
+
 const KumbhSans = localFont({
   src: [
     { path: "./fonts/KumbhSans-Regular.ttf", weight: "400", style: "normal" },
@@ -22,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${KumbhSans.className}`}>{children}</body>
+      <body className={` flex mx-auto lg:w-[85%] ${KumbhSans.className}`}>{children}
+      <Navbar/>
+      </body>
     </html>
   );
 }

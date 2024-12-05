@@ -38,7 +38,7 @@ const Navbar = () => {
                 <path
                   d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z"
                   fill="#69707D"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                 />
               </svg>
             </div>
@@ -82,8 +82,8 @@ const Navbar = () => {
             <Image
               alt="Avatar"
               src="/images/image-avatar.png"
-              width={500}
-              height={500}
+              width={10}
+              height={10}
               className="lg:w-[3.3em] lg:h-[3.3em] w-[2em] h-[2em]"
             />
           </div>
