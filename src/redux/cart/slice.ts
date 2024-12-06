@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"; // PayloadAction
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ProductProps {
   image: string;
@@ -16,11 +16,17 @@ const initialState: CartState = {
 };
 
 const cartSlice = createSlice({
-    name: "cart",
-    initialState,
-    reducers: {
+  name: "cart",
+  initialState,
+  reducers: {
+    addProductToCart: (state, action: PayloadAction<ProductProps>) => {
+      state.products = [];
 
-    }
-})
+      state.products = [ {...action.payload}];
+    },
+  },
+});
 
-export default cartSlice.reducer
+export const { addProductToCart } = cartSlice.actions;
+
+export default cartSlice.reducer;
