@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import Navbar from "@/components/Navbar";
+import ReduxProvider from "@/redux/ReduxProvider";
 
 const KumbhSans = localFont({
   src: [
@@ -24,8 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` flex mx-auto lg:w-[85%] ${KumbhSans.className}`}>{children}
-      <Navbar/>
+      <body className={` flex flex-col mx-auto lg:w-[85%] ${KumbhSans.className}`}>
+        <ReduxProvider>
+          <Navbar />
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );
