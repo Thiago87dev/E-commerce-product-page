@@ -19,7 +19,7 @@ const Product = () => {
   };
 
   return (
-    <div className="flex w-max flex-col gap-8 ">
+    <div className="flex w-max flex-col gap-8 select-none">
       <div>
         <Image
           alt="Shoes"
