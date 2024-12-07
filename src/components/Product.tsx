@@ -26,7 +26,7 @@ const Product = () => {
           src={selectedImage.replace('-thumbnail', '')}
           width={400}
           height={400}
-          className="rounded-xl"
+          className="rounded-xl cursor-pointer"
         />
       </div>
       <div className="flex justify-between ">
@@ -40,7 +40,7 @@ const Product = () => {
               }`}
             >
               <Image
-                className={`hover:opacity-50 rounded-xl ${
+                className={`hover:opacity-50 rounded-xl cursor-pointer ${
                   selectedImage === image ? "opacity-50" : "opacity-100"
                 }`}
                 onClick={() => handleImageClick(image)}
