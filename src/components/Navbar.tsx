@@ -2,22 +2,25 @@
 import Image from "next/image";
 import { useState } from "react";
 import Cart from "./Cart";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { showTheCart } from "@/redux/showCart/slice";
 import { RootState } from "@/redux/store";
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+
   const product = useSelector((state: RootState) => state.cart.products);
+  const showCart = useSelector((state: RootState) => state.showCart)
 
   const [activeItem, setActiveItem] = useState<string>("");
   const [activeMenu, setActiveMenu] = useState(false);
-  const [showCart, setShowCart] = useState(false);
 
   const toggleMenu = () => {
     setActiveMenu(!activeMenu);
   };
 
   const toggleCart = () => {
-    setShowCart(!showCart);
+    dispatch(showTheCart())
   };
 
   const closeMenu = () => {
