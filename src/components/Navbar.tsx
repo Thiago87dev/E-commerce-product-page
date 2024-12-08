@@ -61,7 +61,10 @@ const Navbar = () => {
       <nav className="flex items-center mt-6 px-6 lg:px-0 w-full justify-between ">
         <div className="flex items-center gap-16">
           <div className="flex items-end gap-3">
-            <div onClick={toggleMenu} className="lg:hidden cursor-pointer select-none">
+            <div
+              onClick={toggleMenu}
+              className="lg:hidden cursor-pointer select-none"
+            >
               <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z"
@@ -122,9 +125,9 @@ const Navbar = () => {
             </div>
           </div>
           <div
-            className={`hidden ${
+            className={`hidden lg:absolute lg:left-[-146px] lg:top-[70px] ${
               showCart ? "lg:flex" : "lg:hidden"
-            } lg:absolute lg:left-[-146px] lg:top-[70px]`}
+            } `}
           >
             <Cart />
           </div>
@@ -140,13 +143,13 @@ const Navbar = () => {
         </div>
       </nav>
       <hr className="hidden lg:flex mt-4" />
-      <div
+      {/* <div
         className={`lg:hidden ${
           showCart ? "flex" : "hidden"
         } absolute top-24  w-full`}
       >
         <Cart />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -3,11 +3,11 @@ import ProductInfo from "@/components/ProductInfo";
 
 export default function Home() {
   return (
-    <div className="flex px-14 py-20 gap-10 justify-between items-center">
-      <div className="w-[50%]">
+    <div className="flex flex-col lg:gap-10 gap-6 lg:py-20 py-5 justify-between items-center lg:flex-row lg:px-14">
+      <div className="lg:w-[50%]">
         <Product />
       </div>
-      <div className="w-[50%]">
+      <div className="lg:w-[50%]">
         <ProductInfo />
       </div>
     </div>
