@@ -4,6 +4,7 @@ import { useState } from "react";
 import Cart from "./Cart";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import PopUpProduct from "./PopUpProduct";
 
 const imagesSrcThumb = [
   "/images/image-product-1-thumbnail.jpg",
@@ -14,15 +15,56 @@ const imagesSrcThumb = [
 
 const Product = () => {
   const [selectedImage, setSelectedImage] = useState<string>(imagesSrcThumb[0]);
+  const [showPopUp, setShowPopUp] = useState(false);
 
   const handleImageClick = (imageSrc: string) => {
     setSelectedImage(imageSrc);
   };
 
+  const handleNextImage = () => {
+    const nextImage = selectedImage.replace(
+      /(\d+)(?=-thumbnail\.jpg)/,
+      (match) => {
+        if (parseInt(match) === 4) {
+          match = "0";
+        }
+        return (parseInt(match) + 1).toString();
+      }
+    );
+    setSelectedImage(nextImage);
+  };
+
+  const handlePreviousImage = () => {
+    const nextImage = selectedImage.replace(
+      /(\d+)(?=-thumbnail\.jpg)/,
+      (match) => {
+        if (parseInt(match) === 1) {
+          match = "5";
+        }
+        return (parseInt(match) - 1).toString();
+      }
+    );
+    setSelectedImage(nextImage);
+  };
+
   const showCart = useSelector((state: RootState) => state.showCart);
+
+  const handleShowPopUp = () => {
+    setShowPopUp(true);
+  };
+
+  const handleClosePopUp = () => {
+    if (showPopUp === true) {
+      setShowPopUp(false);
+    }
+  };
+
   return (
-    <div className="flex w-max flex-col gap-8 select-none">
-      <div className="hidden lg:flex">
+    <div
+      
+      className="flex w-max flex-col gap-8 select-none"
+    >
+      <div onClick={handleShowPopUp} className="hidden lg:flex">
         <Image
           alt="Shoes"
           src={selectedImage.replace("-thumbnail", "")}
@@ -36,10 +78,14 @@ const Product = () => {
           alt="Shoes"
           src={selectedImage.replace("-thumbnail", "")}
           layout="fill"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           objectFit="cover"
           objectPosition="center center"
         />
-        <div className="flex absolute top-36 left-6 justify-center items-center w-10 h-10 bg-colorLightGrayishBlue rounded-full active:text-colorOrange cursor-pointer">
+        <div
+          onClick={handlePreviousImage}
+          className="flex absolute top-36 left-6 justify-center items-center w-10 h-10 bg-colorLightGrayishBlue rounded-full active:text-colorOrange cursor-pointer"
+        >
           <svg width="11" height="18" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M11 1 3 9l8 8"
@@ -51,7 +97,10 @@ const Product = () => {
             />
           </svg>
         </div>
-        <div className="flex absolute top-36 right-6 justify-center items-center w-10 h-10 bg-colorLightGrayishBlue rounded-full active:text-colorOrange cursor-pointer">
+        <div
+          onClick={handleNextImage}
+          className="flex absolute top-36 right-6 justify-center items-center w-10 h-10 bg-colorLightGrayishBlue rounded-full active:text-colorOrange cursor-pointer"
+        >
           <svg width="11" height="19" xmlns="http://www.w3.org/2000/svg">
             <path
               d="m2 1 8 8-8 8"
@@ -93,6 +142,14 @@ const Product = () => {
           </div>
         ))}
       </div>
+      {showPopUp && (
+        <div>
+          <div onClick={handleClosePopUp} className="hidden fixed inset-0 lg:flex items-center justify-center bg-colorBlack75opacity z-50 flex-col "></div>
+          <div>
+            <PopUpProduct selectedImage={selectedImage} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

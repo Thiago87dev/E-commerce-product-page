@@ -14,7 +14,7 @@ const Cart = () => {
 
   return (
     <div>
-      <div className="flex flex-col z-100 absolute  py-2 w-[350px] bg-white lg:h-60 h-64  mx-auto drop-shadow-2xl bgw lg:w-[350px] rounded-lg">
+      <div className="flex flex-col z-20 absolute  py-2 w-[350px] bg-white lg:h-60 h-64  mx-auto drop-shadow-2xl bgw lg:w-[350px] rounded-lg">
         <div className="px-5 ">
           <h2 className="font-bold text-lg">Cart</h2>
         </div>
