@@ -58,7 +58,7 @@ const ProductInfo = () => {
           <div className="flex mt-2 lg:mt-1">
             <h3 className="font-bold text-3xl mb-2">${productInfo.price}</h3>
           </div>
-          <div className="bg-black px-2 rounded-lg">
+          <div className="bg-black px-2 lg:rounded-lg rounded-md">
             <div className="text-colorWhite">50%</div>
           </div>
         </div>

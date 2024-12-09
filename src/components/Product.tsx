@@ -2,9 +2,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import Cart from "./Cart";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import PopUpProduct from "./PopUpProduct";
+import { showThePopUp } from "@/redux/showPopUp/slice";
 
 const imagesSrcThumb = [
   "/images/image-product-1-thumbnail.jpg",
@@ -15,7 +16,8 @@ const imagesSrcThumb = [
 
 const Product = () => {
   const [selectedImage, setSelectedImage] = useState<string>(imagesSrcThumb[0]);
-  const [showPopUp, setShowPopUp] = useState(false);
+
+  const dispatch = useDispatch()
 
   const handleImageClick = (imageSrc: string) => {
     setSelectedImage(imageSrc);
@@ -48,15 +50,14 @@ const Product = () => {
   };
 
   const showCart = useSelector((state: RootState) => state.showCart);
+  const showPopUp = useSelector((state: RootState)=>state.showPopUp)
 
   const handleShowPopUp = () => {
-    setShowPopUp(true);
+    dispatch(showThePopUp())
   };
 
   const handleClosePopUp = () => {
-    if (showPopUp === true) {
-      setShowPopUp(false);
-    }
+    dispatch(showThePopUp())
   };
 
   return (
@@ -73,7 +74,7 @@ const Product = () => {
           className="rounded-xl cursor-pointer"
         />
       </div>
-      <div className="lg:hidden relative z-0 w-[375px] h-[330px] overflow-hidden">
+      <div className="lg:hidden relative z-0 w-[375px] h-[300px] overflow-hidden">
         <Image
           alt="Shoes"
           src={selectedImage.replace("-thumbnail", "")}
@@ -84,7 +85,7 @@ const Product = () => {
         />
         <div
           onClick={handlePreviousImage}
-          className="flex absolute top-36 left-6 justify-center items-center w-10 h-10 bg-colorLightGrayishBlue rounded-full active:text-colorOrange cursor-pointer"
+          className="flex absolute top-[130px] left-6 justify-center items-center w-10 h-10 bg-colorLightGrayishBlue rounded-full active:text-colorOrange cursor-pointer"
         >
           <svg width="11" height="18" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -99,7 +100,7 @@ const Product = () => {
         </div>
         <div
           onClick={handleNextImage}
-          className="flex absolute top-36 right-6 justify-center items-center w-10 h-10 bg-colorLightGrayishBlue rounded-full active:text-colorOrange cursor-pointer"
+          className="flex absolute top-[130px] right-6 justify-center items-center w-10 h-10 bg-colorLightGrayishBlue rounded-full active:text-colorOrange cursor-pointer"
         >
           <svg width="11" height="19" xmlns="http://www.w3.org/2000/svg">
             <path

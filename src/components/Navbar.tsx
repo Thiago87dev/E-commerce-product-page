@@ -123,7 +123,7 @@ const Navbar = () => {
                 className="stroke-current"
               />
             </svg>
-            <div className="flex select-none items-center font-bold text-colorWhite justify-center bg-colorOrange rounded-full w-5 h-3 text-xs absolute top-[-6px] left-2">
+            <div className={`${product.length < 1 ? "hidden":"flex"}  select-none items-center font-bold text-colorWhite justify-center bg-colorOrange rounded-full w-5 h-3 text-xs absolute top-[-6px] left-2`}>
               {product.reduce((acc, item) => acc + item.quantity!, 0)}
             </div>
           </div>
@@ -146,13 +146,6 @@ const Navbar = () => {
         </div>
       </nav>
       <hr className="hidden lg:flex mt-4" />
-      {/* <div
-        className={`lg:hidden ${
-          showCart ? "flex" : "hidden"
-        } absolute top-24  w-full`}
-      >
-        <Cart />
-      </div> */}
     </div>
   );
 };
