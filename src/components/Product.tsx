@@ -17,7 +17,7 @@ const imagesSrcThumb = [
 const Product = () => {
   const [selectedImage, setSelectedImage] = useState<string>(imagesSrcThumb[0]);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleImageClick = (imageSrc: string) => {
     setSelectedImage(imageSrc);
@@ -50,21 +50,18 @@ const Product = () => {
   };
 
   const showCart = useSelector((state: RootState) => state.showCart);
-  const showPopUp = useSelector((state: RootState)=>state.showPopUp)
+  const showPopUp = useSelector((state: RootState) => state.showPopUp);
 
   const handleShowPopUp = () => {
-    dispatch(showThePopUp())
+    dispatch(showThePopUp());
   };
 
   const handleClosePopUp = () => {
-    dispatch(showThePopUp())
+    dispatch(showThePopUp());
   };
 
   return (
-    <div
-      
-      className="flex w-max flex-col gap-8 select-none"
-    >
+    <div className="flex w-max flex-col gap-8 select-none">
       <div onClick={handleShowPopUp} className="hidden lg:flex">
         <Image
           alt="Shoes"
@@ -145,7 +142,10 @@ const Product = () => {
       </div>
       {showPopUp && (
         <div>
-          <div onClick={handleClosePopUp} className="hidden fixed inset-0 lg:flex items-center justify-center bg-colorBlack75opacity z-50 flex-col "></div>
+          <div
+            onClick={handleClosePopUp}
+            className="hidden lg:flex fixed inset-0 items-center justify-center bg-colorBlack75opacity z-50  "
+          ></div>
           <div>
             <PopUpProduct selectedImage={selectedImage} />
           </div>
