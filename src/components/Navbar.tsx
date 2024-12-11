@@ -30,8 +30,8 @@ const Navbar = () => {
   return (
     <div className="flex flex-col w-full relative ">
       {activeMenu && (
-        <div className=" bg-colorBlack75opacity lg:hidden w-full z-10 h-screen absolute inset-0">
-          <div className="bg-colorWhite pt-9 pl-6 h-screen w-[16em]">
+        <div className=" bg-colorBlack75opacity lg:hidden w-screen z-10 min-h-[55em] absolute inset-0">
+          <div className="bg-colorWhite pt-9 pl-6 min-h-full w-[16em]">
             <div onClick={closeMenu}>
               <Image
                 alt="close menu"
